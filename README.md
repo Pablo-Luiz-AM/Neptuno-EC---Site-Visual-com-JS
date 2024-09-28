@@ -1,0 +1,5 @@
+Site Visaul - Neptuno EC
+
+Um site visual com JavaScript é uma plataforma que utiliza intensamente elementos gráficos e interativos para criar uma experiência imersiva, aproveitando o poder do JavaScript para dar vida ao design. Nesse tipo de site, o JavaScript é usado para adicionar animações, transições, efeitos visuais e interatividade, garantindo que o usuário seja envolvido com o conteúdo de maneira fluida e dinâmica.
+
+Um site visual com JavaScript é uma página da web que utiliza intensamente recursos gráficos e interatividade para proporcionar uma experiência de usuário rica e envolvente, com o suporte do JavaScript para animações, efeitos visuais e funcionalidades dinâmicas. Diferente de sites estáticos que apenas exibem conteúdo, um site visual com JavaScript faz uso de scripts para criar uma interface interativa e dinâmica, tornando a navegação mais fluida e cativante.
