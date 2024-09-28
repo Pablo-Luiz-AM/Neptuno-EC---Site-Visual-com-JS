@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscreva-se</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 80px;
+    margin-right: 10px;
+}
+
+nav {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 0.5em;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+        #courses-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .course {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        #purchase-container {
+            display: none;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="./img/logo.png" alt="Logo da Universidade Neptuno">
+    </div>
+    <div class="university-name">
+        <h1>Universidade Neptuno</h1>
+        <p>Transformando o Futuro com Educação de Qualidade</p>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../Suporte/index.html">Suporte</a></li>
+        <li><a href="../Suporte/Probabilidades/index.html">Probabilidades</a></li>
+    </ul>
+</nav>
+
+<div id="cursos-container">
+    <div class="course" onclick="openPurchase('Curso Técnico em TI', '15/02/2024', '15/03/2025', 3800.99)">
+        <img src="./img/TI.png" alt="Curso Técnico em TI">
+        <h3>Curso Técnico em TI</h3>
+        <p>R$3800.99</p>
+    </div>
+
+    <div class="course" onclick="openPurchase('Curso Técnico em Desenvolvimento de Sistemas', '/02/2024', '01/03/2025', 5000.00)">
+        <img src="./img/DEV.png" alt="Curso Técnico em Desenvolvimento de Sistemas">
+        <h3>Curso Técnico em Desenvolvimento de Sistemas</h3>
+        <p>R$5000.00</p>
+    </div>
+
+<div id="purchase-container">
+    <h2>Compra de Curso</h2>
+    <p id="course-name"></p>
+    <p id="course-dates"></p>
+    <label for="card-number">Número do Cartão:</label>
+    <input type="text" id="card-number" placeholder="**** **** **** ****">
+    <label for="expiration-date">Data de Expiração:</label>
+    <input type="text" id="expiration-date" placeholder="MM/YY">
+    <label for="card-password">Senha do Cartão:</label>
+    <input type="password" id="card-password">
+    <button onclick="completePurchase()">Comprar</button>
+</div>
+
+<script>
+    function openPurchase(courseName, startDate, endDate, price) {
+        document.getElementById('course-name').innerText = courseName + ' - R$' + price;
+        document.getElementById('course-dates').innerText = `Data de Início: ${startDate} | Data de Término: ${endDate}`;
+        document.getElementById('purchase-container').style.display = 'block';
+    }
+
+    function completePurchase() {
+        const courseName = document.getElementById('course-name').innerText;
+        const cardNumber = document.getElementById('card-number').value;
+        const expirationDate = document.getElementById('expiration-date').value;
+
+        // Validar se todos os campos foram preenchidos
+        if (!cardNumber || !expirationDate) {
+            alert('Preencha todos os campos do cartão.');
+            return;
+        }
+
+        // Salvar no localStorage
+        const purchasedCourses = JSON.parse(localStorage.getItem('purchasedCourses')) || [];
+        purchasedCourses.push({ courseName, startDate: getStartDate(), endDate: getEndDate() });
+        localStorage.setItem('purchasedCourses', JSON.stringify(purchasedCourses));
+
+        // Exibir mensagem de sucesso
+        alert('Curso comprado com sucesso!');
+
+        // Limpar campos de compra
+        document.getElementById('card-number').value = '';
+        document.getElementById('expiration-date').value = '';
+        document.getElementById('card-password').value = '';
+        document.getElementById('purchase-container').style.display = 'none';
+        
+        // Abrir a página de cursos comprados
+        window.location.href = 'cursos_comprados.html';
+    }
+
+    function getStartDate() {
+        // Adapte esta função conforme necessário para obter a data de início do curso
+        return '15/02/2024';
+    }
+
+    function getEndDate() {
+        // Adapte esta função conforme necessário para obter a data de término do curso
+        return '15/03/2025';
+    }
+</script>
+
+</body>
+</html>
